@@ -14,7 +14,7 @@
 	<name>eep-services</name>
 	<description>Edzest Examination Platform API Services</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.runtime.version>11</java.runtime.version>
 	</properties>
 	<dependencies>
 		<dependency>
