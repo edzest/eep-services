@@ -10,6 +10,13 @@ import javax.persistence.Table;
 @Table(name = "tests")
 @Data
 public class TestInfo {
+
+    public TestInfo(Long testId, String title, String instructions) {
+        this.testId = testId;
+        this.title = title;
+        this.instructions = instructions;
+    }
+
     @Id
     private Long testId;
     private String title;

@@ -1,7 +1,7 @@
 package org.edzest.eep.controllers;
 
 import org.edzest.eep.entities.TestInfo;
-import org.edzest.eep.services.TestInfoService;
+import org.edzest.eep.services.TestsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ import java.util.List;
 public class TestController {
 
     @Autowired
-    private TestInfoService testInfoService;
+    private TestsService testInfoService;
 
     @GetMapping
     public List<TestInfo> getAllTests() {
