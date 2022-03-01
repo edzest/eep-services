@@ -11,14 +11,14 @@ import javax.persistence.Table;
 @Data
 public class TestInfo {
 
-    public TestInfo(Long testId, String title, String instructions) {
-        this.testId = testId;
+    public TestInfo(Long id, String title, String instructions) {
+        this.id = id;
         this.title = title;
         this.instructions = instructions;
     }
 
     @Id
-    private Long testId;
+    private Long id;
     private String title;
     private String instructions;
 }

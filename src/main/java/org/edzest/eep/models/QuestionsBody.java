@@ -12,4 +12,13 @@ public class QuestionsBody {
     private Long questionId;
     private String questionTxt;
     private List<String> options;
+
+    public QuestionsBody() {
+    }
+
+    public QuestionsBody(Long questionId, String questionTxt, List<String> options) {
+        this.questionId = questionId;
+        this.questionTxt = questionTxt;
+        this.options = options;
+    }
 }

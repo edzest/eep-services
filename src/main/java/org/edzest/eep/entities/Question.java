@@ -21,4 +21,18 @@ public class Question {
     private String option3;
     private String option4;
     private String correctOption;
+
+    public Question() {
+    }
+
+    public Question(Long questionId, TestInfo test, String questionTxt, String option1, String option2, String option3, String option4, String correctOption) {
+        this.questionId = questionId;
+        this.test = test;
+        this.questionTxt = questionTxt;
+        this.option1 = option1;
+        this.option2 = option2;
+        this.option3 = option3;
+        this.option4 = option4;
+        this.correctOption = correctOption;
+    }
 }
