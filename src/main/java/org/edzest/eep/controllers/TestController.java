@@ -1,14 +1,15 @@
 package org.edzest.eep.controllers;
 
 import org.edzest.eep.entities.TestInfo;
+import org.edzest.eep.models.FullTest;
 import org.edzest.eep.services.TestsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/api/tests")
@@ -21,5 +22,18 @@ public class TestController {
     @GetMapping
     public List<TestInfo> getAllTests() {
         return testInfoService.findAll();
+    }
+
+    @GetMapping("/{testId}")
+    public FullTest getFullTest(@PathVariable(value = "testId") Long testId) {
+        try {
+            FullTest test = testInfoService.getFullTestByTestId(testId);
+            return test;
+        } catch (NoSuchElementException e) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "test not found"
+            );
+        }
+
     }
 }
