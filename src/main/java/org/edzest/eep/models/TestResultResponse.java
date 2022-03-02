@@ -12,4 +12,14 @@ public class TestResultResponse {
     private String studentName;
     private SimpleScore scores;
     private List<TestResultResponseQuestion> questions;
+
+    public TestResultResponse() {
+    }
+
+    public TestResultResponse(Long testId, String studentName, SimpleScore scores, List<TestResultResponseQuestion> questions) {
+        this.testId = testId;
+        this.studentName = studentName;
+        this.scores = scores;
+        this.questions = questions;
+    }
 }

@@ -4,6 +4,11 @@ import org.edzest.eep.entities.Question;
 import org.edzest.eep.entities.TestInfo;
 import org.edzest.eep.models.FullTest;
 import org.edzest.eep.models.QuestionsBody;
+import org.edzest.eep.models.TestResultRequest;
+import org.edzest.eep.models.TestResultResponse;
+import org.edzest.eep.models.answers.SingleChoiceAnswer;
+import org.edzest.eep.models.questions.TestResultResponseQuestion;
+import org.edzest.eep.models.scores.SimpleScore;
 import org.edzest.eep.repositories.QuestionRepository;
 import org.edzest.eep.repositories.TestInfoRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -74,6 +79,44 @@ public class TestsServiceTest {
 
         assertThatThrownBy(() -> testsService.getFullTestByTestId(missingTestId))
                 .isInstanceOf(NoSuchElementException.class);
+    }
+
+    @Test
+    public void evaluateTestResult() {
+        Long testId = 1L;
+        TestResultRequest testResultRequest = new TestResultRequest();
+        testResultRequest.setTestId(testId);
+        testResultRequest.setStudentName("MS Dhoni");
+        SingleChoiceAnswer answer1 = new SingleChoiceAnswer(1L, "option 4");
+        SingleChoiceAnswer answer2 = new SingleChoiceAnswer(2L, "option 3");
+        testResultRequest.setAnswers(List.of(answer1, answer2));
+
+        TestInfo testInfo = new TestInfo(testId, "Mock Test", "Sample Instructions");
+        Question question1 = new Question(testId, testInfo, "Fake question", "option 1", "option 2",
+                "option 3", "option 4", "option 4");
+        Question question2 = new Question(testId, testInfo, "Fake question number 2", "option 1", "option 2",
+                "option 3", "option 4", "option 4");
+
+        when(testInfoRepository.findById(testId)).thenReturn(Optional.of(testInfo));
+        when(questionRepository.findAllQuestionByTestId(testId)).thenReturn(List.of(question1, question2));
+
+        SimpleScore scores = new SimpleScore(1,2);
+        TestResultResponseQuestion qstnResponse1 = new TestResultResponseQuestion(testId, question1.getQuestionTxt(),
+                List.of(question1.getOption1(), question1.getOption2(), question1.getOption3(), question1.getOption4()),
+                "option 4", "option 4");
+        TestResultResponseQuestion qstnResponse2 = new TestResultResponseQuestion(testId, question2.getQuestionTxt(),
+                List.of(question2.getOption1(), question2.getOption2(), question2.getOption3(), question2.getOption4()),
+                "option 4", "option 3");
+        TestResultResponse expectedResponse = new TestResultResponse(
+                testId,
+                "MS Dhoni",
+                scores,
+                List.of(qstnResponse1, qstnResponse2)
+        );
+
+        TestResultResponse actualResponse = testsService.evaluateTest(testResultRequest);
+
+        assertThat(actualResponse).isEqualTo(expectedResponse);
     }
 
 

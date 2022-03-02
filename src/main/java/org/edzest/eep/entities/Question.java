@@ -3,6 +3,7 @@ package org.edzest.eep.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "questions")
@@ -34,5 +35,9 @@ public class Question {
         this.option3 = option3;
         this.option4 = option4;
         this.correctOption = correctOption;
+    }
+
+    public List<String> getAllOptions() {
+        return List.of(option1, option2, option3, option4);
     }
 }

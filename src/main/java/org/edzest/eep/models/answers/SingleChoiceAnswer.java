@@ -1,7 +1,17 @@
 package org.edzest.eep.models.answers;
 
-import org.edzest.eep.models.answers.Answer;
+import lombok.Data;
 
-public class SingleChoiceAnswer extends Answer {
+@Data
+public class SingleChoiceAnswer {
+    public SingleChoiceAnswer() {
+    }
+
+    public SingleChoiceAnswer(Long questionId, String selectedOption) {
+        this.questionId = questionId;
+        this.selectedOption = selectedOption;
+    }
+
+    private Long questionId;
     private String selectedOption;
 }
