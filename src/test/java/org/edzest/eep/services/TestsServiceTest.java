@@ -18,6 +18,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -55,7 +56,7 @@ public class TestsServiceTest {
         TestInfo testInfo = new TestInfo(testId, "Mock Test", "Sample Instructions");
         Question question = new Question(testId, testInfo, "Fake question", "option 1", "option 2",
                 "option 3", "option 4", "option 4");
-        List<String> optionList = List.of(
+        List<String> optionList = Arrays.asList(
                 question.getOption1(),
                 question.getOption2(),
                 question.getOption3(),
@@ -69,7 +70,9 @@ public class TestsServiceTest {
 
         FullTest fullTest = testsService.getFullTestByTestId(testId);
 
-        assertThat(fullTest).isEqualTo(expectedFullTest);
+        assertThat(fullTest.getTestId()).isEqualTo(expectedFullTest.getTestId());
+        assertThat(fullTest.getTitle()).isEqualTo(expectedFullTest.getTitle());
+        assertThat(fullTest.getInstructions()).isEqualTo(expectedFullTest.getInstructions());
     }
 
     @Test

@@ -2,6 +2,7 @@ package org.edzest.eep.models;
 
 import lombok.Data;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -19,6 +20,7 @@ public class QuestionsBody {
     public QuestionsBody(Long questionId, String questionTxt, List<String> options) {
         this.questionId = questionId;
         this.questionTxt = questionTxt;
+        Collections.shuffle(options);
         this.options = options;
     }
 }
