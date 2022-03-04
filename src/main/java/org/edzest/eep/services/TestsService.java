@@ -36,10 +36,11 @@ public class TestsService {
 
     public FullTest getFullTestByTestId(Long testId) throws NoSuchElementException {
         TestInfo testInfo = testInfoRepository.findById(testId).orElseThrow(NoSuchElementException::new);
-        List<Question> questions = questionRepository.findAllQuestionByTestId(testId);
+        List<Question> questions = questionRepository.findAllQuestionByTestId(testId).orElse(List.of());
 
         List<QuestionsBody> questionsBodyList = questions.stream().map((question) -> {
-            List<String> options = List.of(
+
+            List<String> options = Arrays.asList(
                     question.getOption1(),
                     question.getOption2(),
                     question.getOption3(),
@@ -56,7 +57,7 @@ public class TestsService {
         response.setTestId(testId);
         response.setStudentName(testResultRequest.getStudentName());
 
-        List<Question> questions = questionRepository.findAllQuestionByTestId(testId);
+        List<Question> questions = questionRepository.findAllQuestionByTestId(testId).orElse(List.of());
         List<SingleChoiceAnswer> answers = testResultRequest.getAnswers();
 
         // calculate score and build result answer response - this assumes both the list are of same size

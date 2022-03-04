@@ -65,7 +65,7 @@ public class TestsServiceTest {
         FullTest expectedFullTest = new FullTest(testInfo.getId(), testInfo.getTitle(), testInfo.getInstructions(), questionList);
 
         when(testInfoRepository.findById(testId)).thenReturn(Optional.of(testInfo));
-        when(questionRepository.findAllQuestionByTestId(testId)).thenReturn(List.of(question));
+        when(questionRepository.findAllQuestionByTestId(testId)).thenReturn(Optional.of(List.of(question)));
 
         FullTest fullTest = testsService.getFullTestByTestId(testId);
 
@@ -98,7 +98,7 @@ public class TestsServiceTest {
                 "option 3", "option 4", "option 4");
 
         when(testInfoRepository.findById(testId)).thenReturn(Optional.of(testInfo));
-        when(questionRepository.findAllQuestionByTestId(testId)).thenReturn(List.of(question1, question2));
+        when(questionRepository.findAllQuestionByTestId(testId)).thenReturn(Optional.of(List.of(question1, question2)));
 
         SimpleScore scores = new SimpleScore(1,2);
         TestResultResponseQuestion qstnResponse1 = new TestResultResponseQuestion(testId, question1.getQuestionTxt(),
