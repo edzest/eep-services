@@ -38,15 +38,9 @@ public class TestsService {
         TestInfo testInfo = testInfoRepository.findById(testId).orElseThrow(NoSuchElementException::new);
         List<Question> questions = questionRepository.findAllQuestionByTestId(testId).orElse(List.of());
 
-        List<QuestionsBody> questionsBodyList = questions.stream().map((question) -> {
-
-            List<String> options = Arrays.asList(
-                    question.getOption1(),
-                    question.getOption2(),
-                    question.getOption3(),
-                    question.getOption4());
-            return new QuestionsBody(question.getQuestionId(), question.getQuestionTxt(), options);
-        }).collect(Collectors.toList());
+        List<QuestionsBody> questionsBodyList = questions.stream()
+                .map((question) -> new QuestionsBody(question.getQuestionId(), question.getQuestionTxt(), question.getAllOptions()))
+                .collect(Collectors.toList());
 
         return new FullTest(testInfo.getId(), testInfo.getTitle(), testInfo.getInstructions(), questionsBodyList);
     }

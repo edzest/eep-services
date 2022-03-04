@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = {"http://localhost:4200/", "https://eep-dashboard.web.app"})
 public class TestResultController {
 
-    private TestsService testsService;
+    private final TestsService testsService;
 
     @Autowired
     public TestResultController(TestsService testsService) {

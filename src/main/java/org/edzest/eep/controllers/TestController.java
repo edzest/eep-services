@@ -27,8 +27,7 @@ public class TestController {
     @GetMapping("/{testId}")
     public FullTest getFullTest(@PathVariable(value = "testId") Long testId) {
         try {
-            FullTest test = testInfoService.getFullTestByTestId(testId);
-            return test;
+            return testInfoService.getFullTestByTestId(testId);
         } catch (NoSuchElementException e) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "test not found"

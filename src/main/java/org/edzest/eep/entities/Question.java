@@ -3,7 +3,11 @@ package org.edzest.eep.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Entity
 @Table(name = "questions")
@@ -38,6 +42,7 @@ public class Question {
     }
 
     public List<String> getAllOptions() {
-        return List.of(option1, option2, option3, option4);
+        return Stream.of(option1, option2, option3, option4)
+                .filter(Objects::nonNull).collect(Collectors.toList());
     }
 }
