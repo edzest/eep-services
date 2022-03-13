@@ -20,6 +20,6 @@ public class TestResultResponse {
         this.testId = testId;
         this.studentName = studentName;
         this.scores = scores;
-        this.questions = questions;
+        this.questions = questions;	
     }
 }

@@ -26,11 +26,12 @@ public class Question {
     private String option3;
     private String option4;
     private String correctOption;
+    private String explanation;
 
     public Question() {
     }
 
-    public Question(Long questionId, TestInfo test, String questionTxt, String option1, String option2, String option3, String option4, String correctOption) {
+    public Question(Long questionId, TestInfo test, String questionTxt, String option1, String option2, String option3, String option4, String correctOption, String explanation) {
         this.questionId = questionId;
         this.test = test;
         this.questionTxt = questionTxt;
@@ -39,6 +40,7 @@ public class Question {
         this.option3 = option3;
         this.option4 = option4;
         this.correctOption = correctOption;
+        this.explanation = explanation;
     }
 
     public List<String> getAllOptions() {

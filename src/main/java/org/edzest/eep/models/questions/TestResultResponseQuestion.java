@@ -11,15 +11,17 @@ public class TestResultResponseQuestion {
     protected List<String> options;
     private String correctOption;
     private String selectedOption;
+    private String explanation;
 
     public TestResultResponseQuestion() {
     }
 
-    public TestResultResponseQuestion(Long questionId, String questionTxt, List<String> options, String correctOption, String selectedOption) {
+    public TestResultResponseQuestion(Long questionId, String questionTxt, List<String> options, String correctOption, String selectedOption,String explanation) {
         this.questionId = questionId;
         this.questionTxt = questionTxt;
         this.options = options;
         this.correctOption = correctOption;
         this.selectedOption = selectedOption;
+        this.explanation = explanation;
     }
 }

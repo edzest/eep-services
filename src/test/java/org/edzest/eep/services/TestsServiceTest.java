@@ -55,7 +55,7 @@ public class TestsServiceTest {
         Long testId = 1L;
         TestInfo testInfo = new TestInfo(testId, "Mock Test", "Sample Instructions");
         Question question = new Question(testId, testInfo, "Fake question", "option 1", "option 2",
-                "option 3", "option 4", "option 4");
+                "option 3", "option 4", "option 4","explanation");
         List<String> optionList = Arrays.asList(
                 question.getOption1(),
                 question.getOption2(),
@@ -96,9 +96,9 @@ public class TestsServiceTest {
 
         TestInfo testInfo = new TestInfo(testId, "Mock Test", "Sample Instructions");
         Question question1 = new Question(testId, testInfo, "Fake question", "option 1", "option 2",
-                "option 3", "option 4", "option 4");
+                "option 3", "option 4", "option 4","explanation");
         Question question2 = new Question(testId, testInfo, "Fake question number 2", "option 1", "option 2",
-                "option 3", "option 4", "option 4");
+                "option 3", "option 4", "option 4","explanation");
 
         when(testInfoRepository.findById(testId)).thenReturn(Optional.of(testInfo));
         when(questionRepository.findAllQuestionByTestId(testId)).thenReturn(Optional.of(List.of(question1, question2)));
@@ -106,10 +106,10 @@ public class TestsServiceTest {
         SimpleScore scores = new SimpleScore(1,2);
         TestResultResponseQuestion qstnResponse1 = new TestResultResponseQuestion(testId, question1.getQuestionTxt(),
                 List.of(question1.getOption1(), question1.getOption2(), question1.getOption3(), question1.getOption4()),
-                "option 4", "option 4");
+                "option 4", "option 4","explanation ");
         TestResultResponseQuestion qstnResponse2 = new TestResultResponseQuestion(testId, question2.getQuestionTxt(),
                 List.of(question2.getOption1(), question2.getOption2(), question2.getOption3(), question2.getOption4()),
-                "option 4", "option 3");
+                "option 4", "option 3","explanation");
         TestResultResponse expectedResponse = new TestResultResponse(
                 testId,
                 "MS Dhoni",

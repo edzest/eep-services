@@ -71,6 +71,7 @@ public class TestsService {
             responseQuestion.setOptions(question.getAllOptions());
             String correctOption = question.getCorrectOption();
             String selectedOption = answer.getSelectedOption();
+            responseQuestion.setExplanation(question.getExplanation());
             responseQuestion.setCorrectOption(correctOption);
             responseQuestion.setSelectedOption(selectedOption);
             if (Objects.equals(correctOption, selectedOption)) score.incrementScored();
