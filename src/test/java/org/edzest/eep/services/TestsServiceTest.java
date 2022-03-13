@@ -106,7 +106,7 @@ public class TestsServiceTest {
         SimpleScore scores = new SimpleScore(1,2);
         TestResultResponseQuestion qstnResponse1 = new TestResultResponseQuestion(testId, question1.getQuestionTxt(),
                 List.of(question1.getOption1(), question1.getOption2(), question1.getOption3(), question1.getOption4()),
-                "option 4", "option 4","explanation ");
+                "option 4", "option 4","explanation");
         TestResultResponseQuestion qstnResponse2 = new TestResultResponseQuestion(testId, question2.getQuestionTxt(),
                 List.of(question2.getOption1(), question2.getOption2(), question2.getOption3(), question2.getOption4()),
                 "option 4", "option 3","explanation");
